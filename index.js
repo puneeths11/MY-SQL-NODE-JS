@@ -172,7 +172,11 @@ app.get("/user/:id/edit", (req, res) => {
   try {
     connection.query(q, (err, result) => {
       if (err) throw err;
-      let user = result[0]; //result in array at 0 because object inside array
+      // console.log(result)
+      let user = result[0]; //result in array at 0 because object inside array'
+      // console.log(user)
+      // console.log(result[0]);
+      // console.log(result[1]);
       res.render("edit.ejs", { user });
     });
   } catch (err) {
@@ -215,7 +219,7 @@ app.get("/user/new", (req, res) => {
 });
 
 app.post("/user/new", (req, res) => {
-  let { username, email, password } = req.body;
+  let { username, email, password } = req.body; //destructuring retrive data and data in variables
   let id = uuidv4();
   //Query to Insert New User
   let q = `INSERT INTO user (id, username, email, password) VALUES ('${id}','${username}','${email}','${password}') `;
